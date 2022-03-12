@@ -7,7 +7,7 @@ def get_continued_fraction(ans, x):
   a0 = int(sqrt(x))
   n, m, a = 1, 0, 0
   f = True
-  if (a0 * a0 != x):
+  if a0**2 != x:
     while (a != 2 * a0):
       m = n * a - m;
       n = (x - m * m) / n;
@@ -20,11 +20,10 @@ def get_continued_fraction(ans, x):
 def gen(a, x, y, i, cur):
   if (i >= cur):
     return x * a[i] + 1, a[i]
-  else:
-    rx, ry = gen(a, y, a[i + 1], i + 1, cur)
-    x = x * rx + ry
-    y = rx
-    return x, y
+  rx, ry = gen(a, y, a[i + 1], i + 1, cur)
+  x = x * rx + ry
+  y = rx
+  return x, y
 
 # generate the solutions to the equation x^2 - n*y^2 = 1
 # (1, 0) is always a solution, so try to generate a solution with positive x and y
